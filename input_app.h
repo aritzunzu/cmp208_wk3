@@ -31,6 +31,7 @@ private:
 	void ProcessKeyboardInput();
 	void ProcessControllerInput();
 	void ProcessTouchInput();
+	bool IsInside(const gef::Sprite& sprite, const gef::Vector2& point);
 
 	gef::SpriteRenderer* sprite_renderer_;
 	gef::Font* font_;

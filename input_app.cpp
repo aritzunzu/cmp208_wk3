@@ -63,16 +63,22 @@ bool InputApp::Update(float frame_time)
 	}
 	gef::Vector4 sprite_position = my_sprite_.position();
 	
-	if (touch_released)
+	/*if (touch_released)
 	{	
-		sprite_position.set_x(sprite_position.x() + (sprite_position.x() -end_position.x)/60);
-		sprite_position.set_y(sprite_position.y() + (sprite_position.y() - end_position.y) / 60);
-		frame_ammount += frame_time;
+		sprite_position.set_x(sprite_position.x() - (sprite_position.x() - end_position.x) /60);
+		sprite_position.set_y(sprite_position.y() - (sprite_position.y() - end_position.y) / 60);
+		frame_ammount += 1;
 	}
-	if (frame_ammount >= 2)	
+	if (frame_ammount >= 60)	
 	{
 		touch_released = false;
 		frame_ammount = 0;
+	}
+	*/
+	if (IsInside(my_sprite_,touch_position_))
+	{
+		sprite_position.set_x(touch_position_.x);
+		sprite_position.set_y(touch_position_.y);
 	}
 
 		my_sprite_.set_position(sprite_position);
@@ -162,10 +168,28 @@ void InputApp::ProcessTouchInput()
 
 					my_sprite_.set_colour(0xffffffff);
 					end_position = touch->position;
+					touch_released = true;
 					
 				}
 			}
 		}
+	}
+}
+
+bool InputApp::IsInside(const gef::Sprite & sprite, const gef::Vector2 & point)
+{
+	gef::Vector4 sprite_position = sprite.position();
+
+	if (point.x>= sprite_position.x() -(sprite.width()/2) && point.x <= sprite_position.x() + (sprite.width() / 2))
+	{
+		if (point.y >= sprite_position.y() - (sprite.height() / 2) && point.y <= sprite_position.y() + (sprite.height() / 2))
+		{
+			return true;
+		}		
+	}
+	else
+	{
+		return false;
 	}
 }
 
