@@ -7,6 +7,8 @@
 #include <system/debug_log.h>
 
 
+//Test
+
 InputApp::InputApp(gef::Platform& platform) :
 	Application(platform),
 	sprite_renderer_(NULL),
