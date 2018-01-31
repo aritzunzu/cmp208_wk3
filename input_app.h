@@ -4,6 +4,8 @@
 #include <system/application.h>
 #include <maths/vector2.h>
 #include <input/touch_input_manager.h>
+#include <graphics\sprite.h>
+
 
 // FRAMEWORK FORWARD DECLARATIONS
 namespace gef
@@ -33,6 +35,11 @@ private:
 	gef::SpriteRenderer* sprite_renderer_;
 	gef::Font* font_;
 	gef::InputManager* input_manager_;
+	gef::Vector2 end_position;
+	bool touch_released;
+	float frame_ammount;
+	
+	gef::Sprite my_sprite_;
 
 	Int32 active_touch_id_;
 	gef::Vector2 touch_position_;
